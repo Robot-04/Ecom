@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+/* Signup form */
+
+.form-container input  {
+  @apply w-70 my-2 py-1 px-2 border-gray-400 rounded-full font-bold text-emerald-950
+}
+
+.form-container input:focus {
+  @apply border-none
+}
