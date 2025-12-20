@@ -7,7 +7,7 @@ const Signin = () => {
 
     const [form, setForm] = useState({
         email: "",
-        passowrd: ""
+        password: ""
     })
 
     const handleChange = (e) => {
@@ -27,6 +27,18 @@ const Signin = () => {
             },
             body: JSON.stringify(form),
         })
+
+        const { data } = await res.json()
+
+        if(res.ok) {
+            localStorage.setItem("token", data.token)
+            alert("Signin Successful")
+            navigate("/home")
+        }else {
+            alert(data.manager)
+        }
+
+
     }
 
     return (
@@ -34,16 +46,22 @@ const Signin = () => {
             <div className='absolute inset-0 m-auto w-100 h-80 bg-indigo-200 border-black shadow-xl/30 p-4 rounded-4xl'>
                 <h3 className='font-mono tracking-wide'>Signin</h3>
                 <div className='form-container my-3'>
-                    <form onSubmit={handleSubmit}>
-                    <input 
-                        name='email'
-                        placeholder='Enter the registered email'
-                    />
-                    <input 
-                        name='password'
-                        placeholder='Enter the password'
-                    />
-                    <button></button>
+                    <form onSubmit={handleSubmit} className='flex-col'>
+                        <input 
+                            name='email'
+                            placeholder='Enter the registered email'
+                            value={form.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type='password'
+                            name='password'
+                            placeholder='Enter the password'
+                            value={form.password}
+                            onChange={handleChange}
+                        />
+                        <button type='submit' className='w-25 bg-fuchsia-500 rounded-4xl tracking-widest p-1 mt-4' 
+                        >Singin</button>
                     </form>
                 </div>
             </div>

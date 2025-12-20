@@ -73,7 +73,7 @@ const Signup = () => {
                             value={form.password}
                             onChange={handleChange}
                         />
-                        <button type='submit' className='w-60 bg-fuchsia-400 my-5'>Signup</button>
+                        <button type='submit' className='w-25 bg-fuchsia-400 my-5 rounded-4xl tracking-widest px-1 py-1'>Signup</button>
                     </form>
                     <p>If you have already signup then click on <a href='/signin'>Login</a></p>
                 </div>

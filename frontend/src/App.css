@@ -4,7 +4,7 @@
 /* Signup form */
 
 .form-container input  {
-  @apply w-70 my-2 py-1 px-2 border-gray-400 rounded-full font-bold text-emerald-950
+  @apply w-70 border-1 my-2 py-1 px-2 border-gray-400 rounded-full font-bold text-emerald-950
 }
 
 .form-container input:focus {
