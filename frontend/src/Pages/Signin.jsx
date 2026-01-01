@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         email: "",
         password: ""
-    })
+    });
 
     const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -28,7 +28,9 @@ const Signin = () => {
             body: JSON.stringify(form),
         })
 
-        const { data } = await res.json()
+        const data = await res.json()
+
+        // console.log(data)
 
         if(res.ok) {
             localStorage.setItem("token", data.token)
@@ -37,8 +39,6 @@ const Signin = () => {
         }else {
             alert(data.manager)
         }
-
-
     }
 
     return (

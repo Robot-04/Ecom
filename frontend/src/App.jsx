@@ -3,11 +3,10 @@ import "./App.css"
 import Home from "./Pages/Home"
 import Signin from "./Pages/Signin"
 import Signup from "./Pages/Signup"
-import ProtectedRoute from "./Auth/ProtectedRoute"
+import ProtectedRoute from "./auth/ProtectedRoute"
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Signup />} />
         <Route path="/Signin" element={<Signin />} />
@@ -21,8 +20,7 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
   )
 }
 
-export default App
+export default App;
