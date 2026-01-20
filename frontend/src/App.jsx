@@ -1,15 +1,17 @@
 import {  BrowserRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
-import Home from "./Pages/Home"
-import Signin from "./Pages/Signin"
-import Signup from "./Pages/Signup"
+import Home from "./Pages/user/Home"
+import Signin from "./Pages/auth/Signin"
+import Signup from "./Pages/auth/Signup"
 import ProtectedRoute from "./auth/ProtectedRoute"
+import AdminRoute from "./auth/AdminRoute"
+import Admin from "./Pages/admin/admin"
 
 function App() {
   return (
       <Routes>
         <Route path="/" element={<Signup />} />
-        <Route path="/Signin" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />
         
         <Route 
           path="/home"
@@ -17,6 +19,15 @@ function App() {
             <ProtectedRoute >
               <Home />
             </ProtectedRoute>
+          }
+        />
+
+        <Route 
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Admin />
+            </AdminRoute>
           }
         />
       </Routes>

@@ -10,7 +10,7 @@ export async function signup(req, res) {
     try {
         const {name, email, password} = req.body;
         if(!name || !email || !password) {
-            res.status(400).json({message: 'All fields are required'})
+            return res.status(400).json({message: 'All fields are required'})
         }
 
         const exisrtingUser = await User.findOne({email})
@@ -51,11 +51,13 @@ export async function login(req, res) {
         }
 
         const user = await User.findOne({email});
+        
         if(!user) {
-            res.status(404).json({message: 'User not found'});
+            return res.status(404).json({message: 'User not found'});
         }
 
         const match = await bcrypt.compare(password, user.password);
+        
         if(!match) return res.status(401).json({message: 'Invalid Credentials'})
 
         const token = jwt.sign(
@@ -63,7 +65,17 @@ export async function login(req, res) {
             JWT_SECRET, 
             {expiresIn: "1h"}
         ) 
-        return res.json({message: "Login successfull", token})   
+
+        return res.json({
+            message: "Login successfull", 
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });   
 
     } catch(e) {
         res.status(500).json({message: e.message});

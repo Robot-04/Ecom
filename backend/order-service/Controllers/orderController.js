@@ -4,7 +4,7 @@ import axios from "axios"
 const PRODUCT_SERVICE_URI = process.env.PRODUCT_SERVICE_URI;
 
 export async function CreateOrder(req, res) {
-    const { userID } = req.params
+    const { userId } = req.params
     const {items, totalAmount} = req.body
     try {
         
@@ -30,7 +30,7 @@ export async function CreateOrder(req, res) {
         }
 
         const newOrder = new Order({
-            userID, items, totalAmount
+            userID: userId, items, totalAmount
         })
 
         await newOrder.save()

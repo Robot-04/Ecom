@@ -9,7 +9,7 @@ const port = process.env.PORT || 3002;
 
 app.use(express.json());
 
-app.use('api/order', OrderRoute);
+app.use('/api/order', OrderRoute);
 
 async function start() {
     try{
